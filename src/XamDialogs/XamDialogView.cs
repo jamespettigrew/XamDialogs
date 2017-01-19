@@ -219,7 +219,8 @@ namespace XamDialogs
 			: base ()
 		{
 			var actualBoxHeight = 155.0f;
-			var window = UIApplication.SharedApplication.Windows[UIApplication.SharedApplication.Windows.Length - 1];
+            var window = UIApplication.SharedApplication.KeyWindow;
+
 
 			var allFrame = window.Frame;
 
@@ -259,7 +260,6 @@ namespace XamDialogs
 			});
 
 			aView.Add (this);
-			aView.BringSubviewToFront (this);
 
 			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications ();
 
@@ -293,7 +293,8 @@ namespace XamDialogs
 		/// </summary>
 		public void Show ()
 		{
-			var window = UIApplication.SharedApplication.Windows[UIApplication.SharedApplication.Windows.Length - 1];
+            var window = UIApplication.SharedApplication.KeyWindow;
+
 			Show (window);
 		}
 
@@ -487,9 +488,7 @@ namespace XamDialogs
 
 			this.ActualBox.Center = this.Center;
 
-
-			var window = UIApplication.SharedApplication.Windows[UIApplication.SharedApplication.Windows.Length - 1];
-
+            var window = UIApplication.SharedApplication.KeyWindow;
 
 			mBackingView = new UIView (window.Bounds);
 
@@ -599,7 +598,8 @@ namespace XamDialogs
 		private void ResetFrame (Boolean animated)
 		{
 
-			var window = UIApplication.SharedApplication.Windows[UIApplication.SharedApplication.Windows.Length - 1];
+            var window = UIApplication.SharedApplication.KeyWindow;
+
 
 			this.Frame = window.Frame;
 
