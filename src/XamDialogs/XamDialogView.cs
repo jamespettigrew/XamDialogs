@@ -27,7 +27,9 @@ namespace XamDialogs
 		private NSObject mKeyboardDidHideNotification;
 
 		private UIColor mTitleLabelColor;
+        private UIFont mTitleLabelFont;
 		private UIColor mMessageLabelColor;
+        private UIFont mMessageLabelFont;
 
 		private UIView mBackingView;
         private UIColor mDialogBackgroundColor;
@@ -154,6 +156,19 @@ namespace XamDialogs
             }
 		}
 
+        /// <summary>
+        /// Gets or sets the color of the title label.
+        /// </summary>
+        /// <value>The color of the title label.</value>
+        public UIFont TitleLabelFont {
+            get {
+                return mTitleLabelFont;
+            }
+            set {
+                mTitleLabelFont = value;
+            }
+        }
+
 		/// <summary>
 		/// Gets or sets the color of the message label text.
 		/// </summary>
@@ -168,6 +183,20 @@ namespace XamDialogs
 
 				mMessageLabelColor = value; }
 		}
+
+        /// <summary>
+        /// Gets or sets the color of the message label text.
+        /// </summary>
+        /// <value>The color of the message label text.</value>
+        public UIFont MessageLabelFont {
+            get {
+                return mMessageLabelFont;
+            }
+            set {
+
+                mMessageLabelFont = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the color of the dialog background.
@@ -341,7 +370,7 @@ namespace XamDialogs
 
 			UILabel titleLabel = new UILabel (new CGRect (padding, padding, width, 20));
 
-			titleLabel.Font = UIFont.BoldSystemFontOfSize (17.0f);
+            titleLabel.Font = TitleLabelFont;
 			titleLabel.Text = this.Title;
 			titleLabel.TextAlignment = UITextAlignment.Center;
 			titleLabel.TextColor = TitleLabelTextColor;
@@ -351,9 +380,8 @@ namespace XamDialogs
 
 			var messageLabel = new UILabel (new CGRect (padding, padding + titleLabel.Frame.Size.Height + 5, width, 31.5));
 			messageLabel.Lines = 2;
-			messageLabel.Font = UIFont.SystemFontOfSize (13.0f);
+            messageLabel.Font = MessageLabelFont;
 			messageLabel.Text = this.Message;
-			messageLabel.TextAlignment = UITextAlignment.Center;
 			messageLabel.TextColor = messageLabelTextColor;
 			messageLabel.SizeToFit ();
 
