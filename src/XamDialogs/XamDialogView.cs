@@ -501,7 +501,7 @@ namespace XamDialogs
 
 					submitButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
 
-                    submitButton.SetTitleColor (CanSubmit, UIControlState.Normal);
+                    submitButton.SetTitleColor (SubmitButtonTextColor, UIControlState.Normal);
 					submitButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 
 
