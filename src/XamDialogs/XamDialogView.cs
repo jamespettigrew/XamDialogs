@@ -21,10 +21,6 @@ namespace XamDialogs
 
 		private XamDialogType _BoxType;
 
-		private UIBlurEffectStyle _BlurEffectStyle = UIBlurEffectStyle.Light;
-
-		private UIVisualEffectView _VisualEffectView;
-
 		private UIView _ActualBox;
 
 		private NSObject mKeyboardDidSHowNotification;
@@ -110,28 +106,6 @@ namespace XamDialogs
 			}
 		}
 			
-		/// <summary>
-		/// Gets or sets the blur effect style.
-		/// </summary>
-		/// <value>The blur effect style.</value>
-		public UIBlurEffectStyle BlurEffectStyle {
-			get {
-				return this._BlurEffectStyle;
-			}
-			set {
-				this._BlurEffectStyle = value;
-			}
-		}
-			
-		private UIVisualEffectView VisualEffectView {
-			get {
-				return this._VisualEffectView;
-			}
-			set {
-				this._VisualEffectView = value;
-			}
-		}
-			
 		private UIView ActualBox {
 			get {
 				return this._ActualBox;
@@ -171,15 +145,12 @@ namespace XamDialogs
 		public UIColor TitleLabelTextColor {
 			get 
 			{
-				if (mTitleLabelColor == null)
-					return (this.BlurEffectStyle == UIBlurEffectStyle.Dark) ? UIColor.White : UIColor.Black;
-				
 				return mTitleLabelColor; 
 			}
 			set 
-			{
-				
-				mTitleLabelColor = value; }
+			{	
+				mTitleLabelColor = value; 
+            }
 		}
 
 		/// <summary>
@@ -189,9 +160,6 @@ namespace XamDialogs
 		public UIColor MessageLabelTextColor {
 			get 
 			{
-				if (mMessageLabelColor == null)
-					return (this.BlurEffectStyle == UIBlurEffectStyle.Dark) ? UIColor.White : UIColor.Black;
-
 				return mMessageLabelColor; 
 			}
 			set 
@@ -343,35 +311,12 @@ namespace XamDialogs
 			this.ActualBox.Layer.CornerRadius = 4.0f;
 			this.ActualBox.Layer.MasksToBounds = true;
 
-			// 
-			UIColor messageLabelTextColor = null;
+            // 
+            UIColor messageLabelTextColor = MessageLabelTextColor;
 			UIColor elementBackgroundColor = null;
-			UIColor buttonBackgroundColor = null;
+            UIColor buttonBackgroundColor = null;
 
-			// 
-			var style = this.BlurEffectStyle;
-
-			// 
-			switch (style) {
-			case UIBlurEffectStyle.Dark:
-				{
-					messageLabelTextColor = UIColor.White;
-					elementBackgroundColor = UIColor.FromWhiteAlpha (1.0f, 0.07f);
-					buttonBackgroundColor = UIColor.FromWhiteAlpha (1.0f, 0.07f);
-				}
-				break;
-			default:
-				{
-					messageLabelTextColor = UIColor.Black;
-					elementBackgroundColor = UIColor.FromWhiteAlpha (1.0f, 0.50f);
-					buttonBackgroundColor = UIColor.FromWhiteAlpha (1.0f, 0.2f);
-				}
-
-				break;
-			}
-
-
-			this.VisualEffectView = new UIVisualEffectView (UIBlurEffect.FromStyle (style));
+            var view = new UIView ();
 
 			var padding = 10.0f;
 			var width = this.ActualBox.Frame.Size.Width - padding * 2;
@@ -385,7 +330,7 @@ namespace XamDialogs
 			titleLabel.TextColor = TitleLabelTextColor;
 
 
-			this.VisualEffectView.ContentView.Add (titleLabel);
+			view.Add (titleLabel);
 
 			var messageLabel = new UILabel (new CGRect (padding, padding + titleLabel.Frame.Size.Height + 5, width, 31.5));
 			messageLabel.Lines = 2;
@@ -400,7 +345,7 @@ namespace XamDialogs
 			mFrame.Width = width; 
 			messageLabel.Frame = mFrame;
 
-			this.VisualEffectView.ContentView.Add (messageLabel);
+			view.Add (messageLabel);
 
 			var aView = this.ContentView;
 
@@ -417,19 +362,8 @@ namespace XamDialogs
 			extendedFrame.Height += aView.Frame.Height;
 			this.ActualBox.Frame = extendedFrame;
 
-			this.VisualEffectView.ContentView.Add (aView);
-			// 
-			foreach (UIView element in aView.Subviews) 
-			{
-				if (element is UITextField) 
-				{
-					element.Layer.BorderColor = UIColor.FromWhiteAlpha (0.0f, 0.1f).CGColor;
-					element.Layer.BorderWidth = 0.5f;
-					element.BackgroundColor = elementBackgroundColor;
-				}
-
-			}
-			// 
+            // 
+            view.Add (aView);
 
 			var buttonWidth = this.ActualBox.Frame.Size.Width / 2;
 
@@ -455,7 +389,7 @@ namespace XamDialogs
 
 					cancelButton.Layer.BorderColor = UIColor.FromWhiteAlpha (0.0f, 0.1f).CGColor;
 					cancelButton.Layer.BorderWidth = 0.5f;
-					this.VisualEffectView.ContentView.Add (cancelButton);
+					view.Add (cancelButton);
 
 
 					// 
@@ -477,7 +411,7 @@ namespace XamDialogs
 					submitButton.Layer.BorderWidth = 0.5f;
 
 
-					this.VisualEffectView.ContentView.Add (submitButton);
+					view.Add (submitButton);
 				}
 				break;
 			case ButtonMode.Ok:
@@ -501,7 +435,7 @@ namespace XamDialogs
 					submitButton.Layer.BorderWidth = 0.5f;
 
 
-					this.VisualEffectView.ContentView.Add (submitButton);
+					view.Add (submitButton);
 
 				}
 				break;
@@ -522,7 +456,7 @@ namespace XamDialogs
 
 					cancelButton.Layer.BorderColor = UIColor.FromWhiteAlpha (0.0f, 0.1f).CGColor;
 					cancelButton.Layer.BorderWidth = 0.5f;
-					this.VisualEffectView.ContentView.Add (cancelButton);
+					view.Add (cancelButton);
 
 				}
 				break;
@@ -531,8 +465,9 @@ namespace XamDialogs
 
 
 			// 
-			this.VisualEffectView.Frame = new CGRect (0, 0, this.ActualBox.Frame.Size.Width, this.ActualBox.Frame.Size.Height + 45);    
-			this.ActualBox.Add (this.VisualEffectView);
+            view.Frame = new CGRect (0, 0, this.ActualBox.Frame.Size.Width, this.ActualBox.Frame.Size.Height + 45);
+            this.ActualBox.Add (view);
+
 
 			this.ActualBox.Center = this.Center;
 

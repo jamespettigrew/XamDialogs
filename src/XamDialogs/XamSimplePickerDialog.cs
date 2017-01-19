@@ -131,7 +131,6 @@ namespace XamDialogs
 				{
 					Title = title,
 					Message = message,
-					BlurEffectStyle = effectStyle,
 					ConstantUpdates = false,
 				};
 
@@ -176,7 +175,6 @@ namespace XamDialogs
 				{
 					Title = title,
 					Message = message,
-					BlurEffectStyle = effectStyle,
 					ConstantUpdates = false,
 				};
 
@@ -222,7 +220,6 @@ namespace XamDialogs
 				{
 					Title = title,
 					Message = message,
-					BlurEffectStyle = effectStyle,
 					ConstantUpdates = false,
 				};
 
