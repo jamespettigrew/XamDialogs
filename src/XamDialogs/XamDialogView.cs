@@ -16,10 +16,10 @@ namespace XamDialogs
 		private String _Message;
 
 		private String _SubmitButtonText;
-		private UIColor _SubmitButtonTextColor;
+		private UIColor _SubmitButtonTextColor = UIColor.Black;
 
 		private String _CancelButtonText;
-		private UIColor _CancelButtonTextColor;
+		private UIColor _CancelButtonTextColor = UIColor.Black;
 
 		private XamDialogType _BoxType;
 
@@ -28,13 +28,13 @@ namespace XamDialogs
 		private NSObject mKeyboardDidSHowNotification;
 		private NSObject mKeyboardDidHideNotification;
 
-		private UIColor mTitleLabelColor;
-		private UIFont mTitleLabelFont;
-		private UIColor mMessageLabelColor;
-		private UIFont mMessageLabelFont;
+		private UIColor mTitleLabelColor = UIColor.Black;
+		private UIFont mTitleLabelFont = UIFont.SystemFontOfSize(17);
+		private UIColor mMessageLabelColor = UIColor.Black;
+		private UIFont mMessageLabelFont = UIFont.SystemFontOfSize(13);
 
 		private UIView mBackingView;
-		private UIColor mDialogBackgroundColor;
+		private UIColor mDialogBackgroundColor = UIColor.White;
 		private UIColor mBackingColor;
 		#endregion
 
@@ -385,10 +385,10 @@ namespace XamDialogs
 
 			// 
 			UIColor messageLabelTextColor = MessageLabelTextColor;
-			UIColor elementBackgroundColor = DialogBackgroundColor;
 			UIColor buttonBackgroundColor = DialogBackgroundColor;
 
 			var view = new UIView ();
+			view.BackgroundColor = DialogBackgroundColor;
 
 			var padding = 10.0f;
 			var width = this.ActualBox.Frame.Size.Width - padding * 2;
