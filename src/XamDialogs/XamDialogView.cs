@@ -30,6 +30,7 @@ namespace XamDialogs
 		private UIColor mMessageLabelColor;
 
 		private UIView mBackingView;
+        private UIColor mDialogBackgroundColor;
 		private UIColor mBackingColor;
 		#endregion
 
@@ -167,6 +168,21 @@ namespace XamDialogs
 
 				mMessageLabelColor = value; }
 		}
+
+        /// <summary>
+        /// Gets or sets the color of the dialog background.
+        /// </summary>
+        /// <value>The color of the dialog background.</value>
+        public UIColor DialogBackgroundColor {
+            get {
+                return mDialogBackgroundColor;
+            }
+            set {
+
+                mDialogBackgroundColor = value;
+            }
+        }
+
 			
 		/// <summary>
 		/// Gets or sets a value indicating whether this <see cref="XamDialogs.DHDialogView"/> disable background overlay.
@@ -313,8 +329,8 @@ namespace XamDialogs
 
             // 
             UIColor messageLabelTextColor = MessageLabelTextColor;
-			UIColor elementBackgroundColor = null;
-            UIColor buttonBackgroundColor = null;
+            UIColor elementBackgroundColor = DialogBackgroundColor;
+            UIColor buttonBackgroundColor = DialogBackgroundColor;
 
             var view = new UIView ();
 
