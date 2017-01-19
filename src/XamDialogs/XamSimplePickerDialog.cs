@@ -16,6 +16,7 @@ namespace XamDialogs
 		#region Fields
 
 		private UIPickerView mPicker;
+		private UIColor _PickerItemTextColor = UIColor.Black;
 
 		#endregion
 
@@ -47,6 +48,22 @@ namespace XamDialogs
 			}
 		}
 
+		/// <summary>
+		/// Gets or sets the color of the picker item's text.
+		/// </summary>
+		/// <value>The color of the picker item text.</value>
+		public UIColor PickerItemTextColor
+		{
+			get
+			{
+				return _PickerItemTextColor;
+			}
+			set
+			{
+				_PickerItemTextColor = value;
+			}
+		}
+
 
 		/// <summary>
 		/// Called when the selected data has changed
@@ -72,8 +89,6 @@ namespace XamDialogs
 		{
 			mPicker = new UIPickerView (CGRect.Empty);
 			mPicker.Model = new SimplePickerModel (this, items);
-
-			//mPicker.BackgroundColor = UIColor.Red;
 		}
 
 		#endregion
@@ -283,7 +298,7 @@ namespace XamDialogs
 				var str = mItems [(int)row];
 
 				var firstAttributes = new UIStringAttributes {
-					ForegroundColor = pvc.TitleLabelTextColor,
+					ForegroundColor = pvc.PickerItemTextColor,
 				};
 
 				return new NSAttributedString(str, firstAttributes);
