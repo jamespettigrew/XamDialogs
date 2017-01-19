@@ -32,14 +32,14 @@ namespace XamDialogs
 		}
 
 		/// <summary>
-		/// Gets or sets the selected item.
+        /// Gets or sets the selected index
 		/// </summary>
-		/// <value>The selected item.</value>
-		public String SelectedItem 
+		/// <value>The selected index.</value>
+		public uint SelectedIndex
 		{
 			get 
 			{
-				return ((SimplePickerModel)mPicker.Model).SelectedItem;
+                return ((SimplePickerModel)mPicker.Model).SelectedIndex;
 			}
 			set 
 			{
@@ -51,13 +51,13 @@ namespace XamDialogs
 		/// <summary>
 		/// Called when the selected data has changed
 		/// </summary>
-		public event EventHandler<String> OnSelectedItemChanged = delegate {};
+		public event EventHandler<uint> OnSelectedItemChanged = delegate {};
 
 		/// <summary>
 		/// Gets or sets the validation function to call when submitting
 		/// </summary>
 		/// <value>The validate submit.</value>
-		public Func<String,bool> ValidateSubmit { get; set; }
+		public Func<uint,bool> ValidateSubmit { get; set; }
 
 		#endregion
 
@@ -83,7 +83,7 @@ namespace XamDialogs
 		protected override bool CanSubmit ()
 		{
 			if (ValidateSubmit != null)
-				return ValidateSubmit (SelectedItem);
+				return ValidateSubmit (SelectedIndex);
 			
 			return true;
 		}
@@ -95,16 +95,16 @@ namespace XamDialogs
 
 		protected override void HandleSubmit ()
 		{
-			SelectionDidChange(SelectedItem);
+			SelectionDidChange(SelectedIndex);
 		}
 
 		/// <summary>
 		/// Called when the selection did change
 		/// </summary>
 		/// <param name="item">Item.</param>
-		internal void SelectionDidChange(string item)
+		internal void SelectionDidChange(uint index)
 		{
-			OnSelectedItemChanged (this, item);
+			OnSelectedItemChanged (this, index);
 		}
 
 		#endregion
@@ -120,9 +120,9 @@ namespace XamDialogs
 		/// <param name="items">Items.</param>
 		/// <param name="selectedItem">Selected item.</param>
 		/// <param name="effectStyle">Effect style.</param>
-		public static Task<String> ShowDialogAsync(String title, String message, List<String> items, String selectedItem = null, UIBlurEffectStyle effectStyle = UIBlurEffectStyle.ExtraLight)
+		public static Task<uint?> ShowDialogAsync(String title, String message, List<String> items, uint selectedIndex = 0, UIBlurEffectStyle effectStyle = UIBlurEffectStyle.ExtraLight)
 		{
-			var tcs = new TaskCompletionSource<String> ();
+			var tcs = new TaskCompletionSource<uint?> ();
 
 
 			new NSObject ().BeginInvokeOnMainThread (() => {
@@ -134,17 +134,16 @@ namespace XamDialogs
 					ConstantUpdates = false,
 				};
 
-				if (!String.IsNullOrWhiteSpace(selectedItem))
-					dialog.SelectedItem = selectedItem;
+				dialog.SelectedIndex = selectedIndex;
 
 				dialog.OnCancel += (object sender, EventArgs e) => 
 				{
 					tcs.SetResult(null);
 				};
 
-				dialog.OnSelectedItemChanged += (object s, string e) => 
+				dialog.OnSelectedItemChanged += (object s, uint e) => 
 				{
-					tcs.SetResult(dialog.SelectedItem);
+					tcs.SetResult(dialog.SelectedIndex);
 				};
 
 				dialog.Show();
@@ -164,9 +163,9 @@ namespace XamDialogs
 		/// <param name="items">Items.</param>
 		/// <param name="selectedItem">Selected item.</param>
 		/// <param name="effectStyle">Effect style.</param>
-		public static Task<String> ShowDialogAsync(UIViewController vc, String title, String message, List<String> items, String selectedItem = null, UIBlurEffectStyle effectStyle = UIBlurEffectStyle.ExtraLight)
+		public static Task<uint?> ShowDialogAsync(UIViewController vc, String title, String message, List<String> items, uint selectedIndex = 0, UIBlurEffectStyle effectStyle = UIBlurEffectStyle.ExtraLight)
 		{
-			var tcs = new TaskCompletionSource<String> ();
+			var tcs = new TaskCompletionSource<uint?> ();
 
 
 			new NSObject ().BeginInvokeOnMainThread (() => {
@@ -178,17 +177,16 @@ namespace XamDialogs
 					ConstantUpdates = false,
 				};
 
-				if (!String.IsNullOrWhiteSpace(selectedItem))
-					dialog.SelectedItem = selectedItem;
+                dialog.SelectedIndex = selectedIndex;
 
 				dialog.OnCancel += (object sender, EventArgs e) => 
 				{
 					tcs.SetResult(null);
 				};
 
-				dialog.OnSelectedItemChanged += (object s, string e) => 
+				dialog.OnSelectedItemChanged += (object s, uint e) => 
 				{
-					tcs.SetResult(dialog.SelectedItem);
+					tcs.SetResult(dialog.SelectedIndex);
 				};
 
 				dialog.Show(vc);
@@ -209,9 +207,9 @@ namespace XamDialogs
 		/// <param name="items">Items.</param>
 		/// <param name="selectedItem">Selected item.</param>
 		/// <param name="effectStyle">Effect style.</param>
-		public static Task<String> ShowDialogAsync(UIView view, String title, String message, List<String> items, String selectedItem = null, UIBlurEffectStyle effectStyle = UIBlurEffectStyle.ExtraLight)
+		public static Task<uint?> ShowDialogAsync(UIView view, String title, String message, List<String> items, uint selectedIndex = 0, UIBlurEffectStyle effectStyle = UIBlurEffectStyle.ExtraLight)
 		{
-			var tcs = new TaskCompletionSource<String> ();
+			var tcs = new TaskCompletionSource<uint?> ();
 
 
 			new NSObject ().BeginInvokeOnMainThread (() => {
@@ -223,17 +221,16 @@ namespace XamDialogs
 					ConstantUpdates = false,
 				};
 
-				if (!String.IsNullOrWhiteSpace(selectedItem))
-					dialog.SelectedItem = selectedItem;
+                dialog.SelectedIndex = selectedIndex;
 
 				dialog.OnCancel += (object sender, EventArgs e) => 
 				{
 					tcs.SetResult(null);
 				};
 
-				dialog.OnSelectedItemChanged += (object s, string e) => 
+				dialog.OnSelectedItemChanged += (object s, uint e) => 
 				{
-					tcs.SetResult(dialog.SelectedItem);
+					tcs.SetResult(dialog.SelectedIndex);
 				};
 
 				dialog.Show(view);
@@ -254,7 +251,7 @@ namespace XamDialogs
 			/// Gets or sets the selected item.
 			/// </summary>
 			/// <value>The selected item.</value>
-			internal String SelectedItem {
+			internal uint SelectedIndex {
 				get ;
 				set;
 			}
@@ -296,15 +293,13 @@ namespace XamDialogs
 			{
 				if (mItems == null || mItems.Count == 0)
 					return;
-				
-				var item = mItems [(int)row];
 
-				if (item != SelectedItem) 
+				if (row != SelectedIndex) 
 				{
-					SelectedItem = item; 
+                    SelectedIndex = (uint)row;
 
 					if (pvc.ConstantUpdates == true)
-						pvc.SelectionDidChange (item);
+                        pvc.SelectionDidChange ((uint)row);
 				}
 
 			}
@@ -314,20 +309,10 @@ namespace XamDialogs
 				return 40f;
 			}
 
-			public void UpdateSelectedItem(string value)
+            public void UpdateSelectedItem(uint row)
 			{
-				SelectedItem = value;
-
-				//fing the index of the selected value
-				var indexOf = mItems.IndexOf(value);
-
-				if (indexOf != -1) 
-				{
-
-					((UIPickerView)pvc.ContentView).Select (indexOf, 0, true);
-				}
-
-
+                SelectedIndex = row;
+                ((UIPickerView)pvc.ContentView).Select ((nint)row, 0, true);
 			}
 
 		}
