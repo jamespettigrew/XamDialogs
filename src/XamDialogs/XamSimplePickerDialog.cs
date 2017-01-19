@@ -39,7 +39,7 @@ namespace XamDialogs
 		{
 			get 
 			{
-                return ((SimplePickerModel)mPicker.Model).SelectedIndex;
+				return ((SimplePickerModel)mPicker.Model).SelectedIndex;
 			}
 			set 
 			{
@@ -177,7 +177,7 @@ namespace XamDialogs
 					ConstantUpdates = false,
 				};
 
-                dialog.SelectedIndex = selectedIndex;
+				dialog.SelectedIndex = selectedIndex;
 
 				dialog.OnCancel += (object sender, EventArgs e) => 
 				{
@@ -221,7 +221,7 @@ namespace XamDialogs
 					ConstantUpdates = false,
 				};
 
-                dialog.SelectedIndex = selectedIndex;
+				dialog.SelectedIndex = selectedIndex;
 
 				dialog.OnCancel += (object sender, EventArgs e) => 
 				{
@@ -296,10 +296,10 @@ namespace XamDialogs
 
 				if (row != SelectedIndex) 
 				{
-                    SelectedIndex = (uint)row;
+					SelectedIndex = (uint)row;
 
 					if (pvc.ConstantUpdates == true)
-                        pvc.SelectionDidChange ((uint)row);
+						pvc.SelectionDidChange ((uint)row);
 				}
 
 			}
@@ -309,10 +309,10 @@ namespace XamDialogs
 				return 40f;
 			}
 
-            public void UpdateSelectedItem(uint row)
+			public void UpdateSelectedItem(uint row)
 			{
-                SelectedIndex = row;
-                ((UIPickerView)pvc.ContentView).Select ((nint)row, 0, true);
+				SelectedIndex = row;
+				((UIPickerView)pvc.ContentView).Select ((nint)row, 0, true);
 			}
 
 		}

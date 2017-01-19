@@ -16,10 +16,10 @@ namespace XamDialogs
 		private String _Message;
 
 		private String _SubmitButtonText;
-        private UIColor _SubmitButtonTextColor;
+		private UIColor _SubmitButtonTextColor;
 
 		private String _CancelButtonText;
-        private UIColor _CancelButtonTextColor;
+		private UIColor _CancelButtonTextColor;
 
 		private XamDialogType _BoxType;
 
@@ -29,12 +29,12 @@ namespace XamDialogs
 		private NSObject mKeyboardDidHideNotification;
 
 		private UIColor mTitleLabelColor;
-        private UIFont mTitleLabelFont;
+		private UIFont mTitleLabelFont;
 		private UIColor mMessageLabelColor;
-        private UIFont mMessageLabelFont;
+		private UIFont mMessageLabelFont;
 
 		private UIView mBackingView;
-        private UIColor mDialogBackgroundColor;
+		private UIColor mDialogBackgroundColor;
 		private UIColor mBackingColor;
 		#endregion
 
@@ -85,19 +85,18 @@ namespace XamDialogs
 			}
 		}
 
-        /// <summary>
-        /// Gets or sets the color of the message label text.
-        /// </summary>
-        /// <value>The color of the message label text.</value>
-        public UIColor SubmitButtonTextColor {
-            get {
-                return _SubmitButtonTextColor;
-            }
-            set {
-
-                _SubmitButtonTextColor = value;
-            }
-        }
+		/// <summary>
+		/// Gets or sets the color of the message label text.
+		/// </summary>
+		/// <value>The color of the message label text.</value>
+		public UIColor SubmitButtonTextColor {
+			get {
+				return _SubmitButtonTextColor;
+			}
+			set {
+				_SubmitButtonTextColor = value;
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets a value indicating whether this instance cancel button text.
@@ -112,19 +111,18 @@ namespace XamDialogs
 			}
 		}
 
-        /// <summary>
-        /// Gets or sets the color of the message label text.
-        /// </summary>
-        /// <value>The color of the message label text.</value>
-        public UIColor CancelButtonTextColor {
-            get {
-                return _CancelButtonTextColor;
-            }
-            set {
-
-                _CancelButtonTextColor = value;
-            }
-        }
+		/// <summary>
+		/// Gets or sets the color of the message label text.
+		/// </summary>
+		/// <value>The color of the message label text.</value>
+		public UIColor CancelButtonTextColor {
+			get {
+				return _CancelButtonTextColor;
+			}
+			set {
+				_CancelButtonTextColor = value;
+			}
+		}
 
 		/// <summary>
 		/// Gets the type of the box.
@@ -186,18 +184,18 @@ namespace XamDialogs
             }
 		}
 
-        /// <summary>
-        /// Gets or sets the color of the title label.
-        /// </summary>
-        /// <value>The color of the title label.</value>
-        public UIFont TitleLabelFont {
-            get {
-                return mTitleLabelFont;
-            }
-            set {
-                mTitleLabelFont = value;
-            }
-        }
+		/// <summary>
+		/// Gets or sets the color of the title label.
+		/// </summary>
+		/// <value>The color of the title label.</value>
+		public UIFont TitleLabelFont {
+			get {
+				return mTitleLabelFont;
+			}
+			set {
+				mTitleLabelFont = value;
+			}
+		}
 
 		/// <summary>
 		/// Gets or sets the color of the message label text.
@@ -214,33 +212,31 @@ namespace XamDialogs
 				mMessageLabelColor = value; }
 		}
 
-        /// <summary>
-        /// Gets or sets the color of the message label text.
-        /// </summary>
-        /// <value>The color of the message label text.</value>
-        public UIFont MessageLabelFont {
-            get {
-                return mMessageLabelFont;
-            }
-            set {
+		/// <summary>
+		/// Gets or sets the color of the message label text.
+		/// </summary>
+		/// <value>The color of the message label text.</value>
+		public UIFont MessageLabelFont {
+			get {
+				return mMessageLabelFont;
+			}
+		    set {
+				mMessageLabelFont = value;
+			}
+		}
 
-                mMessageLabelFont = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the color of the dialog background.
-        /// </summary>
-        /// <value>The color of the dialog background.</value>
-        public UIColor DialogBackgroundColor {
-            get {
-                return mDialogBackgroundColor;
-            }
-            set {
-
-                mDialogBackgroundColor = value;
-            }
-        }
+		/// <summary>
+		/// Gets or sets the color of the dialog background.
+		/// </summary>
+		/// <value>The color of the dialog background.</value>
+		public UIColor DialogBackgroundColor {
+			get {
+				return mDialogBackgroundColor;
+			}
+			set {
+				mDialogBackgroundColor = value;
+			}
+		}
 
 			
 		/// <summary>
@@ -278,7 +274,7 @@ namespace XamDialogs
 			: base ()
 		{
 			var actualBoxHeight = 155.0f;
-            var window = UIApplication.SharedApplication.KeyWindow;
+			var window = UIApplication.SharedApplication.KeyWindow;
 
 
 			var allFrame = window.Frame;
@@ -352,7 +348,7 @@ namespace XamDialogs
 		/// </summary>
 		public void Show ()
 		{
-            var window = UIApplication.SharedApplication.KeyWindow;
+			var window = UIApplication.SharedApplication.KeyWindow;
 
 			Show (window);
 		}
@@ -387,12 +383,12 @@ namespace XamDialogs
 			this.ActualBox.Layer.CornerRadius = 4.0f;
 			this.ActualBox.Layer.MasksToBounds = true;
 
-            // 
-            UIColor messageLabelTextColor = MessageLabelTextColor;
-            UIColor elementBackgroundColor = DialogBackgroundColor;
-            UIColor buttonBackgroundColor = DialogBackgroundColor;
+			// 
+			UIColor messageLabelTextColor = MessageLabelTextColor;
+			UIColor elementBackgroundColor = DialogBackgroundColor;
+			UIColor buttonBackgroundColor = DialogBackgroundColor;
 
-            var view = new UIView ();
+			var view = new UIView ();
 
 			var padding = 10.0f;
 			var width = this.ActualBox.Frame.Size.Width - padding * 2;
@@ -400,7 +396,7 @@ namespace XamDialogs
 
 			UILabel titleLabel = new UILabel (new CGRect (padding, padding, width, 20));
 
-            titleLabel.Font = TitleLabelFont;
+			titleLabel.Font = TitleLabelFont;
 			titleLabel.Text = this.Title;
 			titleLabel.TextAlignment = UITextAlignment.Center;
 			titleLabel.TextColor = TitleLabelTextColor;
@@ -410,7 +406,7 @@ namespace XamDialogs
 
 			var messageLabel = new UILabel (new CGRect (padding, padding + titleLabel.Frame.Size.Height + 5, width, 31.5));
 			messageLabel.Lines = 2;
-            messageLabel.Font = MessageLabelFont;
+			messageLabel.Font = MessageLabelFont;
 			messageLabel.Text = this.Message;
 			messageLabel.TextColor = messageLabelTextColor;
 			messageLabel.SizeToFit ();
@@ -437,8 +433,8 @@ namespace XamDialogs
 			extendedFrame.Height += aView.Frame.Height;
 			this.ActualBox.Frame = extendedFrame;
 
-            // 
-            view.Add (aView);
+			// 
+			view.Add (aView);
 
 			var buttonWidth = this.ActualBox.Frame.Size.Width / 2;
 
@@ -458,7 +454,7 @@ namespace XamDialogs
 
 
 					cancelButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
-                    cancelButton.SetTitleColor (CancelButtonTextColor, UIControlState.Normal);
+					cancelButton.SetTitleColor (CancelButtonTextColor, UIControlState.Normal);
 					cancelButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 					cancelButton.BackgroundColor = buttonBackgroundColor;
 
@@ -477,7 +473,7 @@ namespace XamDialogs
 
 					submitButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
 
-                    submitButton.SetTitleColor (SubmitButtonTextColor, UIControlState.Normal);
+					submitButton.SetTitleColor (SubmitButtonTextColor, UIControlState.Normal);
 					submitButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 
 
@@ -501,7 +497,7 @@ namespace XamDialogs
 
 					submitButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
 
-                    submitButton.SetTitleColor (SubmitButtonTextColor, UIControlState.Normal);
+					submitButton.SetTitleColor (SubmitButtonTextColor, UIControlState.Normal);
 					submitButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 
 
@@ -525,7 +521,7 @@ namespace XamDialogs
 
 
 					cancelButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
-                    cancelButton.SetTitleColor (CancelButtonTextColor, UIControlState.Normal);
+					cancelButton.SetTitleColor (CancelButtonTextColor, UIControlState.Normal);
 					cancelButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 					cancelButton.BackgroundColor = buttonBackgroundColor;
 
@@ -540,13 +536,13 @@ namespace XamDialogs
 
 
 			// 
-            view.Frame = new CGRect (0, 0, this.ActualBox.Frame.Size.Width, this.ActualBox.Frame.Size.Height + 45);
-            this.ActualBox.Add (view);
+			view.Frame = new CGRect (0, 0, this.ActualBox.Frame.Size.Width, this.ActualBox.Frame.Size.Height + 45);
+			this.ActualBox.Add (view);
 
 
 			this.ActualBox.Center = this.Center;
 
-            var window = UIApplication.SharedApplication.KeyWindow;
+			var window = UIApplication.SharedApplication.KeyWindow;
 
 			mBackingView = new UIView (window.Bounds);
 
@@ -656,7 +652,7 @@ namespace XamDialogs
 		private void ResetFrame (Boolean animated)
 		{
 
-            var window = UIApplication.SharedApplication.KeyWindow;
+			var window = UIApplication.SharedApplication.KeyWindow;
 
 
 			this.Frame = window.Frame;
