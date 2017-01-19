@@ -51,7 +51,7 @@ namespace XamDialogs
 		/// <summary>
 		/// Called when the selected data has changed
 		/// </summary>
-		public event EventHandler<uint> OnSelectedItemChanged = delegate {};
+		public event EventHandler<uint> OnSelectedIndexChanged = delegate {};
 
 		/// <summary>
 		/// Gets or sets the validation function to call when submitting
@@ -104,7 +104,7 @@ namespace XamDialogs
 		/// <param name="item">Item.</param>
 		internal void SelectionDidChange(uint index)
 		{
-			OnSelectedItemChanged (this, index);
+			OnSelectedIndexChanged (this, index);
 		}
 
 		#endregion
@@ -141,7 +141,7 @@ namespace XamDialogs
 					tcs.SetResult(null);
 				};
 
-				dialog.OnSelectedItemChanged += (object s, uint e) => 
+				dialog.OnSelectedIndexChanged += (object s, uint e) => 
 				{
 					tcs.SetResult(dialog.SelectedIndex);
 				};
@@ -184,7 +184,7 @@ namespace XamDialogs
 					tcs.SetResult(null);
 				};
 
-				dialog.OnSelectedItemChanged += (object s, uint e) => 
+				dialog.OnSelectedIndexChanged += (object s, uint e) => 
 				{
 					tcs.SetResult(dialog.SelectedIndex);
 				};
@@ -228,7 +228,7 @@ namespace XamDialogs
 					tcs.SetResult(null);
 				};
 
-				dialog.OnSelectedItemChanged += (object s, uint e) => 
+				dialog.OnSelectedIndexChanged += (object s, uint e) => 
 				{
 					tcs.SetResult(dialog.SelectedIndex);
 				};
