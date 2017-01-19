@@ -16,8 +16,10 @@ namespace XamDialogs
 		private String _Message;
 
 		private String _SubmitButtonText;
+        private UIColor _SubmitButtonTextColor;
 
 		private String _CancelButtonText;
+        private UIColor _CancelButtonTextColor;
 
 		private XamDialogType _BoxType;
 
@@ -83,6 +85,20 @@ namespace XamDialogs
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets the color of the message label text.
+        /// </summary>
+        /// <value>The color of the message label text.</value>
+        public UIColor SubmitButtonTextColor {
+            get {
+                return _SubmitButtonTextColor;
+            }
+            set {
+
+                _SubmitButtonTextColor = value;
+            }
+        }
+
 		/// <summary>
 		/// Gets or sets a value indicating whether this instance cancel button text.
 		/// </summary>
@@ -95,6 +111,20 @@ namespace XamDialogs
 				this._CancelButtonText = value;
 			}
 		}
+
+        /// <summary>
+        /// Gets or sets the color of the message label text.
+        /// </summary>
+        /// <value>The color of the message label text.</value>
+        public UIColor CancelButtonTextColor {
+            get {
+                return _CancelButtonTextColor;
+            }
+            set {
+
+                _CancelButtonTextColor = value;
+            }
+        }
 
 		/// <summary>
 		/// Gets the type of the box.
@@ -428,7 +458,7 @@ namespace XamDialogs
 
 
 					cancelButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
-					cancelButton.SetTitleColor (TitleLabelTextColor, UIControlState.Normal);
+                    cancelButton.SetTitleColor (CancelButtonTextColor, UIControlState.Normal);
 					cancelButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 					cancelButton.BackgroundColor = buttonBackgroundColor;
 
@@ -447,7 +477,7 @@ namespace XamDialogs
 
 					submitButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
 
-					submitButton.SetTitleColor (TitleLabelTextColor, UIControlState.Normal);
+                    submitButton.SetTitleColor (SubmitButtonTextColor, UIControlState.Normal);
 					submitButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 
 
@@ -471,7 +501,7 @@ namespace XamDialogs
 
 					submitButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
 
-					submitButton.SetTitleColor (TitleLabelTextColor, UIControlState.Normal);
+                    submitButton.SetTitleColor (CanSubmit, UIControlState.Normal);
 					submitButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 
 
@@ -495,7 +525,7 @@ namespace XamDialogs
 
 
 					cancelButton.TitleLabel.Font = UIFont.SystemFontOfSize (16.0f);
-					cancelButton.SetTitleColor (TitleLabelTextColor, UIControlState.Normal);
+                    cancelButton.SetTitleColor (CancelButtonTextColor, UIControlState.Normal);
 					cancelButton.SetTitleColor (UIColor.Gray, UIControlState.Highlighted);
 					cancelButton.BackgroundColor = buttonBackgroundColor;
 
