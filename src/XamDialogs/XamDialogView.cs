@@ -404,8 +404,8 @@ namespace XamDialogs
 
 			view.Add (titleLabel);
 
-			var messageLabel = new UILabel (new CGRect (padding, padding + titleLabel.Frame.Size.Height + 5, width, 31.5));
-			messageLabel.Lines = 2;
+			var messageLabel = new UILabel(new CGRect(padding, padding + titleLabel.Frame.Size.Height + 5, width, 0));
+			messageLabel.Lines = 0;
 			messageLabel.Font = MessageLabelFont;
 			messageLabel.Text = this.Message;
 			messageLabel.TextColor = messageLabelTextColor;
